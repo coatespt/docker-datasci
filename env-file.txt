@@ -1,0 +1,2 @@
+FOO=This is foo from the env-file.txt
+BAR=11

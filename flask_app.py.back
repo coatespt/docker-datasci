@@ -1,0 +1,36 @@
+from flask import Flask, request #import main Flask class and request object
+
+
+
+
+app = Flask(__name__)
+
+@app.route('/')
+
+def hello_world():
+    return "Hello World"
+
+@app.route('/query-one-arg')
+def query_example():
+    print('In the query_example method.')
+    language = request.args.get('language') #if key doesn't exist, returns None
+
+    return '''<h1>The language is: {}</h1>'''.format(language)
+
+@app.route('/query-two-args')
+def query_two_example():
+    print('In the query_example method.')
+    language = request.args.get('language') #if key doesn't exist, returns None
+    framework = request.args.get('framework') #if key doesn't exist, returns None
+    return '''<h1>The language is: {}</h1><h1>The framework is: {}</h1>'''.format(language,framework)
+
+# @app.route('/fetchdata', methods=['GET'])
+# def print_square():
+#     recieved_value = int(request.get_json(force=True))
+#     return_value = received_value + 3
+#     print('Flask GET fetch received request {} and responds with {}'.format(recieved_value))
+#     return str(return_value)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
