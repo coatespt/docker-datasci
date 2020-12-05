@@ -2,17 +2,25 @@
 This file describes simple containers to run data science programs. The continers can
 be run with or without
     * host directory bind-mounted in the container
-    * A Flask web server running for
+    * A Flask web server running for Web services
+    * Accessible vi bash prompt
+    * For running batch jobs with output to shared directory
 
-Dockerfile.runbash is outfitted with python, numpy, scipy, etc. and executes a bash shell as the CMD.
+The Docker files all have computer sciency libraries installed: python, numpy, scipy, etc. 
+	The container created by Dockerfile.runbash is intended to be run in the background. You can log onto it by exec'ing a bash
+	shell or you can run batch jobs automatically with the CMD.  
 
-It is intended to be run with or without a shared drive on the host.
+	Dockerfile.web has the same capabilities but is intended for running a Web service 
 
-    docker build -t testcontainer .
+	Both modes are intended to be run with or without a shared drive on the host.
 
-To build one with an explicit version, just add the tag
+Building
 
-    docker build -t testcontainer:v1 .
+    	docker build -t testcontainer .
+
+    To build one with an explicit version, just add the tag
+
+    	docker build -t testcontainer:v1 .
 
 Executing the "docker run" command below will run the container and leave you in an interactive bash shell.
 There is a file called setup.sh that has been copied to your container so sourcing this should give a way
